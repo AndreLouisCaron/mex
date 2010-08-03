@@ -7,6 +7,7 @@
 #include "mex/Class.hpp"
 #include "mex/error.hpp"
 #include "mex/exception.hpp"
+#include "mex/isa.hpp"
 #include "mex/string.hpp"
 #include "mex/types.hpp"
 
@@ -17,9 +18,9 @@ namespace mex {
         ::mxArray *const result =
             ::mxGetProperty(exception, 0, "identifier");
         if ( result == 0 ) {
-            return (str("MATLAB:no-identifier"));
+            return (string("MATLAB:no-identifier"));
         }
-        return (array<char_t>(result, claim()));
+        return (array<char_t>(result, claim));
     }
     
     array<char_t> exception_message ( const ::mxArray * exception )
@@ -27,9 +28,9 @@ namespace mex {
         ::mxArray *const result =
             ::mxGetProperty(exception, 0, "message");
         if ( result == 0 ) {
-            return (str("MATLAB:no-identifier"));
+            return (string("MATLAB:no-identifier"));
         }
-        return (array<char_t>(result, claim()));
+        return (array<char_t>(result, claim));
     }
     
     template<typename T>
@@ -53,7 +54,7 @@ namespace mex {
         }
         
             // Return results.
-        return (mex::array<T>(plhs[0], claim()));
+        return (mex::array<T>(plhs[0], owner));
     }
     
     template<typename T>
@@ -77,7 +78,7 @@ namespace mex {
         }
         
             // Return results.
-        return (mex::array<T>(plhs[0], claim()));
+        return (mex::array<T>(plhs[0], owner));
     }
     
 
@@ -117,7 +118,7 @@ namespace mex {
         }
         
             // Returns (scalar) result.
-        const mex::array<double> _(plhs[0], claim()); return (_(0));
+        const mex::array<double> _(plhs[0], claim); return (_(0));
     }
 }
 

@@ -24,7 +24,7 @@ namespace mex {
     
     inline void error ( const array<char_t>& message )
     {
-        error(str(message));
+        error(string(message));
     }
     
     inline void warning ( const char * message )

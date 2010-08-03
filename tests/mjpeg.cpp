@@ -78,14 +78,14 @@ namespace {
         )
     {
         // Ensures backslash at end of root folder.
-        std::string base = mex::str(root);
+        std::string base = mex::string(root);
         if ( base.empty() ) { base = "./"; }
         const char last = base[base.size()-1];
         if ((last != '/') && (last != '\\'))
         {
             base += '/';
         }
-        const std::string file = mex::str(source);
+        const std::string file = mex::string(source);
         std::ifstream in(file.c_str(), std::ios::binary);
         if ( !in.is_open() ) {
             std::ostringstream message;
@@ -104,8 +104,8 @@ namespace {
             // Obtains content length from header.
             std::ostringstream directory;
             directory << folderName(i, granularity, zeros, base);
-            if (mex::exist(mex::str(directory.str()))==0.0) {
-                mex::mkdir(mex::str(directory.str()));
+            if (mex::exist(mex::string(directory.str()))==0.0) {
+                mex::mkdir(mex::string(directory.str()));
             }
             std::cout << "'" << fileName(i, granularity, zeros, base) << "' length: " << length << std::endl;
             // Makes sure signature matches.
@@ -194,7 +194,7 @@ extern "C" void mexFunction
 try
 {
         // Displays usage if requested.
-    if ((nrhs == 0) || ((nrhs ==1) && (mex::str(prhs[0]) == "--help")))
+    if ((nrhs == 0) || ((nrhs ==1) && (mex::string(prhs[0]) == "--help")))
     {
         throw (std::exception(::usage));
     }
@@ -208,11 +208,11 @@ try
     }
     
         // Wraps arguments and invoke main code.
-    mex::array< mex::char_t   > source     (prhs[0]);
-    mex::array< mex::char_t   > root       (prhs[1]);
-    mex::array< double        > granularity(prhs[2]);
-    mex::array< double        > zeros      (prhs[3]);
-    mex::array< double        > frames     (1);
+    mex::array< mex::char_t   > source     (prhs[0], mex::clone);
+    mex::array< mex::char_t   > root       (prhs[1], mex::clone);
+    mex::array< double        > granularity(prhs[2], mex::clone);
+    mex::array< double        > zeros      (prhs[3], mex::clone);
+    mex::array< double        > frames     (1, 1);
     frames(0) = ::MJPEGToMStandardFormat(source,
         root, std::size_t(granularity(0)), std::size_t(zeros(0)));
     

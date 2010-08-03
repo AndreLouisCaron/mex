@@ -20,7 +20,7 @@ namespace mex {
 
     public:
       explicit exception ( const ::mxArray * backend ) throw()
-        : myMessage(str(::mxGetField(backend, 0, "message")))
+        : myMessage(string(::mxGetField(backend, 0, "message")))
       {
       }
 

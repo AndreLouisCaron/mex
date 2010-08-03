@@ -42,11 +42,30 @@ namespace mex {
     struct numeric_traits :
         public common_traits< T, U >
     {
-        static ::mxArray * matrix
-            ( size_t m, size_t n, complexity_t complexity=real )
+        static ::mxArray * matrix ( size_t m, size_t n, const real_t& )
         {
             ::mxArray *const result = ::mxCreateNumericMatrix
-                (m, n, type_code, complexity);
+                (m, n, type_code, mxREAL);
+            if ( result == 0 ) {
+                throw (std::bad_alloc());
+            }
+            return (result);
+        }
+
+        static ::mxArray * matrix ( size_t m, size_t n, const complex_t& )
+        {
+            ::mxArray *const result = ::mxCreateNumericMatrix
+                (m, n, type_code, mxCOMPLEX);
+            if ( result == 0 ) {
+                throw (std::bad_alloc());
+            }
+            return (result);
+        }
+
+        static ::mxArray * array ( int ndim, const int * dims, const real_t& )
+        {
+            ::mxArray *const result = ::mxCreateNumericArray
+                (ndim, dims, type_code, mxREAL);
             if ( result == 0 ) {
                 throw (std::bad_alloc());
             }
@@ -54,10 +73,10 @@ namespace mex {
         }
 
         static ::mxArray * array
-            ( int ndim, const int * dims, complexity_t complexity=real )
+            ( int ndim, const int * dims, const complex_t& )
         {
             ::mxArray *const result = ::mxCreateNumericArray
-                (ndim, dims, type_code, complexity);
+                (ndim, dims, type_code, mxCOMPLEX);
             if ( result == 0 ) {
                 throw (std::bad_alloc());
             }
@@ -84,11 +103,18 @@ namespace mex {
     template<> struct traits< double > :
         public common_traits< double, mxDOUBLE_CLASS >
     {
-        static ::mxArray * matrix
-            ( size_t m, size_t n, complexity_t complexity=real )
+        static ::mxArray * matrix ( size_t m, size_t n, const real_t& )
         {
-            ::mxArray *const result = ::mxCreateDoubleMatrix
-                (m, n, complex? mxCOMPLEX : mxREAL);
+            ::mxArray *const result = ::mxCreateDoubleMatrix(m, n, mxREAL);
+            if ( result == 0 ) {
+                throw (std::bad_alloc());
+            }
+            return (result);
+        }
+
+        static ::mxArray * matrix ( size_t m, size_t n, const complex_t& )
+        {
+            ::mxArray *const result = ::mxCreateDoubleMatrix(m, n, mxCOMPLEX);
             if ( result == 0 ) {
                 throw (std::bad_alloc());
             }
@@ -114,6 +140,15 @@ namespace mex {
     {
     };
 
+    template<> struct traits< unknown > :
+        public common_traits< unknown, mxUNKNOWN_CLASS >
+    {
+    };
+
+    template<> struct traits< object > :
+        public common_traits< object, mxOBJECT_CLASS >
+    {
+    };
 
     template<> struct traits< int8 > :
         public numeric_traits< int8, mxINT8_CLASS >
@@ -125,6 +160,16 @@ namespace mex {
     {
     };
 
+    template<> struct traits< int16 > :
+        public numeric_traits< int16, mxINT16_CLASS >
+    {
+    };
+
+    template<> struct traits< uint16 > :
+        public numeric_traits< uint16, mxUINT16_CLASS >
+    {
+    };
+
     template<> struct traits< int32 > :
         public numeric_traits< int32, mxINT32_CLASS >
     {
@@ -132,6 +177,16 @@ namespace mex {
 
     template<> struct traits< uint32 > :
         public numeric_traits< uint32, mxUINT32_CLASS >
+    {
+    };
+
+    template<> struct traits< int64 > :
+        public numeric_traits< int64, mxINT64_CLASS >
+    {
+    };
+
+    template<> struct traits< uint64 > :
+        public numeric_traits< uint64, mxUINT64_CLASS >
     {
     };
 

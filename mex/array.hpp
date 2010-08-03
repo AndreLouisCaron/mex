@@ -64,8 +64,6 @@ namespace mex {
         array_base& operator= ( const array_base& other );
     };
 
-    struct claim {};
-
     template<typename T>
     class array :
         public array_base
@@ -82,27 +80,27 @@ namespace mex {
 
         /* construction. */
     public:
-        explicit array ( size_type n )
-            : array_base(traits_type::matrix(1, n))
-        {
-        }
-
         array ( size_type m, size_type n )
-            : array_base(traits_type::matrix(m, n))
+            : array_base(traits_type::matrix(m, n, real))
         {
         }
 
-        array ( size_type m, size_type n, bool complex )
+        array ( size_type m, size_type n, const real_t& )
+            : array_base(traits_type::matrix(m, n, real))
+        {
+        }
+
+        array ( size_type m, size_type n, const complex_t& )
             : array_base(traits_type::matrix(m, n, complex))
         {
         }
 
-        explicit array ( const ::mxArray * backend )
+        array ( const ::mxArray * backend, const clone_t& )
             : array_base(::mxDuplicateArray(traits_type::check(backend)))
         {
         }
 
-        array ( ::mxArray * backend, const claim& )
+        array ( ::mxArray * backend, const claim_t& )
             : array_base(traits_type::check(backend))
         {
         }

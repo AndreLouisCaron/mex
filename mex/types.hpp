@@ -24,28 +24,35 @@ namespace mex {
     typedef logical bool_t;
 
         // Integers of all sizes.
-    typedef unsigned char uint8;
-    typedef signed char int8;
-    typedef unsigned int uint32;
-    typedef signed int int32;
+    typedef   signed char        int8;
+    typedef unsigned char       uint8;
+    typedef   signed short      int16;
+    typedef unsigned short     uint16;
+    typedef   signed int        int32;
+    typedef unsigned int       uint32;
+    typedef   signed long long  int64;
+    typedef unsigned long long uint64;
+
+    // Keep 32/64-bit check aligned with <mex.h>.
+#if defined(_LP64) || defined(_WIN64)
+    typedef uint64 index_t;
+#else
+    typedef uint32 index_t;
+#endif
 
         // Abstract types.
     class cell;
     class object;
+    class unknown;
     typedef void* function;
 
         // Real VS complex arrays.
-    typedef ::mxComplexity complexity_t;
-    static struct complex_t {
-        operator complexity_t () const { return (mxCOMPLEX); }
-    } const complex;
-    static struct real_t {
-        operator complexity_t () const { return (mxREAL); }
-    } const real;
+    static struct complex_t {} const complex;
+    static struct    real_t {} const    real;
 
         // Acquisition semantics.
-    static struct proxy_t {} const proxy;
-    static struct owner_t {} const owner;
+    static struct clone_t {} const clone;
+    static struct claim_t {} const claim;
 
 }
 
