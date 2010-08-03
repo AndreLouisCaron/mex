@@ -9,6 +9,7 @@
 // online at "http://www.opensource.org/licenses/artistic-license-2.0.php".
 
 #include <mex.h>
+#include <engine.h>
 
 #ifdef _MSC_VER
 #   pragma comment ( lib, "libeng.lib" )

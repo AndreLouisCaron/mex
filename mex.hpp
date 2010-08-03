@@ -17,6 +17,7 @@
 #include "mex/isa.hpp"
 #include "mex/string.hpp"
 #include "mex/types.hpp"
+#include "mex/Session.hpp"
 
     // functions.
 #include "mex/exist.hpp"

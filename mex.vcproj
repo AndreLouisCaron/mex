@@ -275,6 +275,10 @@
 				RelativePath=".\mex\call.cpp"
 				>
 			</File>
+			<File
+				RelativePath=".\mex\Session.cpp"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="headers"
@@ -331,6 +335,10 @@
 			</File>
 			<File
 				RelativePath=".\mex\scalar.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\mex\Session.hpp"
 				>
 			</File>
 			<File
