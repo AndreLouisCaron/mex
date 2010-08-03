@@ -46,6 +46,18 @@ namespace mex {
         }
     }
 
+    const std::vector<std::string> Archive::variables () const
+    {
+        int count = 0;
+        char ** const names = ::matGetDir(myBackend, &count);
+        if ( names == 0 ) {
+            throw (std::exception());
+        }
+        std::vector<std::string> result(names, names+count);
+        ::mxFree(names);
+        return (result);
+    }
+
     void Archive::put ( const std::string& name, const array_base& variable )
     {
         const int result = ::matPutVariable
@@ -62,6 +74,14 @@ namespace mex {
             throw (std::exception());
         }
         return (array_base(result, claim));
+    }
+
+    void Archive::del ( const std::string& name )
+    {
+        const int result = ::matDeleteVariable(myBackend, name.c_str());
+        if ( result != 0 ) {
+            throw (std::exception());
+        }
     }
 
 }

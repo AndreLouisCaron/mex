@@ -11,6 +11,7 @@
 #include "__configure__.hpp"
 #include "array.hpp"
 #include <string>
+#include <vector>
 
 namespace mex {
 
@@ -38,8 +39,11 @@ namespace mex {
 
         /* methods. */
     public:
+        const std::vector<std::string> variables () const;
+
         void put ( const std::string& name, const array_base& variable );
         array_base get ( const std::string& name ) const;
+        void del ( const std::string& name );
 
         /* operators. */
     private:
