@@ -19,11 +19,11 @@ namespace mex {
 
     void call ( const array<char_t>& function );
 
-    void call ( int nlhs, ::mxArray * plhs,
-        int nrhs, const ::mxArray * prhs, const char * function );
+    void call ( int nlhs, ::mxArray * plhs[],
+        int nrhs, ::mxArray * prhs[], const char * function );
 
-    void call ( int nlhs, ::mxArray * plhs,
-        int nrhs, const ::mxArray * prhs, const std::string& function );
+    void call ( int nlhs, ::mxArray * plhs[],
+        int nrhs, ::mxArray * prhs[], const std::string& function );
 
     void call ( int nlhs, ::mxArray * plhs[],
         int nrhs, ::mxArray * prhs[], const array<char_t>& function );

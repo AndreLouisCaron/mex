@@ -12,24 +12,17 @@
 
 namespace mex {
 
-    double exist ( const array<char_t>& root )
+    double exist ( const array<char_t>& symbol )
     {
-            // Prepare to call MATLAB
         ::mxArray* prhs[] = {
-            root.backend()
+            symbol.backend(),
         }; const int nrhs = 1;
         ::mxArray* plhs[] = {
-            0
+            0,
         }; const int nlhs = 1;
         
-            // Invoke MATLAB.
-        const ::mxArray * result =
-            ::mexCallMATLABWithTrap(nlhs, plhs, nrhs, prhs, "exist");
-        if ( result != 0 ) {
-            throw (std::exception("exist"));
-        }
+        call(nlhs, plhs, nrhs, plhs, "exist");
         
-            // Returns (scalar) result.
         const mex::array<double> _(plhs[0], claim); return (_(0));
     }
 
