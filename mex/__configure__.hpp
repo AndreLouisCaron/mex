@@ -8,8 +8,9 @@
 // this software package (see "license.rtf"). If not, the license is available
 // online at "http://www.opensource.org/licenses/artistic-license-2.0.php".
 
-#include <mex.h>
 #include <engine.h>
+#include <mat.h>
+#include <mex.h>
 
 #ifdef _MSC_VER
 #   pragma comment ( lib, "libeng.lib" )
