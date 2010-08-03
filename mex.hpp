@@ -1,6 +1,13 @@
 #ifndef _mex_hpp__
 #define _mex_hpp__
 
+// Copyright(c) Andre Caron, 2009-2010
+//
+// This document is covered by the Artistic License 2.0 (Open Source Initiative
+// approved license). A copy of the license should have been provided alongside
+// this software package (see "license.rtf"). If not, the license is available
+// online at "http://www.opensource.org/licenses/artistic-license-2.0.php".
+
     // core wrappers.
 #include "mex/allocator.hpp"
 #include "mex/array.hpp"
@@ -13,10 +20,10 @@
 #include "mex/types.hpp"
 
     // functions.
-#include "exist.hpp"
-#include "flipdim.hpp"
-#include "mkdir.hpp"
-#include "permute.hpp"
+#include "mex/exist.hpp"
+#include "mex/flipdim.hpp"
+#include "mex/mkdir.hpp"
+#include "mex/permute.hpp"
 
 namespace mex {
     
