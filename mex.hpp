@@ -12,7 +12,6 @@
 #include "mex/allocator.hpp"
 #include "mex/array.hpp"
 #include "mex/call.hpp"
-#include "mex/Class.hpp"
 #include "mex/error.hpp"
 #include "mex/exception.hpp"
 #include "mex/isa.hpp"

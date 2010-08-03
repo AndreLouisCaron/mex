@@ -271,10 +271,6 @@
 				RelativePath=".\mex\array.cpp"
 				>
 			</File>
-			<File
-				RelativePath=".\mex\Class.cpp"
-				>
-			</File>
 		</Filter>
 		<Filter
 			Name="headers"
@@ -295,10 +291,6 @@
 			</File>
 			<File
 				RelativePath=".\mex\call.hpp"
-				>
-			</File>
-			<File
-				RelativePath=".\mex\Class.hpp"
 				>
 			</File>
 			<File
