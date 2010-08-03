@@ -1,0 +1,4 @@
+; Minimal exports list for a MATLAB C/C++ Extension (MEX).
+
+EXPORTS
+    mexFunction     PRIVATE
