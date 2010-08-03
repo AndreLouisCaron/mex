@@ -9,10 +9,13 @@
 // online at "http://www.opensource.org/licenses/artistic-license-2.0.php".
 
 #include "__configure__.hpp"
+#include "array.hpp"
 #include <exception>
 #include <string>
 
 namespace mex {
+
+    static struct exclusive_t {} exclusive;
 
     class Session
     {
@@ -23,7 +26,9 @@ namespace mex {
         /* construction. */
     public:
         Session ();
+        Session ( const exclusive_t& );
         Session ( const std::string& command );
+        Session ( const std::string& command, const exclusive_t& );
 
     private:
         Session ( const Session& );
@@ -33,6 +38,13 @@ namespace mex {
 
         /* methods. */
     public:
+        bool visible () const;
+        void visible ( bool visible );
+
+        void put ( const std::string& name, const array_base& variable );
+        array_base get ( const std::string& name ) const;
+
+        void eval ( const std::string& expression );
 
         /* operators. */
     private:

@@ -9,8 +9,18 @@
 
 namespace mex {
 
-    array_base::array_base ( ::mxArray * backend )
+    array_base::array_base ( ::mxArray * backend, const claim_t& )
         : myBackend(backend)
+    {
+    }
+
+    array_base::array_base ( const ::mxArray * backend, const clone_t& )
+        : myBackend(::mxDuplicateArray(backend))
+    {
+    }
+
+    array_base::array_base ( const array_base& other )
+        : myBackend(::mxDuplicateArray(other.backend()))
     {
     }
 

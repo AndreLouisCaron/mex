@@ -21,8 +21,6 @@ namespace mex {
     {
         /* nested types. */
     public:
-        typedef ::mxArray * Backend;
-
         typedef mex::size_t size_type;
         typedef void * pointer;
         typedef const void * const_pointer;
@@ -33,10 +31,9 @@ namespace mex {
 
         /* construction. */
     public:
-        array_base ( ::mxArray * backend );
-    private:
+        array_base ( ::mxArray * backend, const claim_t& );
+        array_base ( const ::mxArray * backend, const clone_t& );
         array_base ( const array_base& other );
-    public:
         ~array_base ();
 
         /* methods. */
@@ -88,27 +85,27 @@ namespace mex {
         /* construction. */
     public:
         array ( size_type m, size_type n )
-            : array_base(traits_type::matrix(m, n, real))
+            : array_base(traits_type::matrix(m, n, real), claim)
         {
         }
 
         array ( size_type m, size_type n, const real_t& )
-            : array_base(traits_type::matrix(m, n, real))
+            : array_base(traits_type::matrix(m, n, real), claim)
         {
         }
 
         array ( size_type m, size_type n, const complex_t& )
-            : array_base(traits_type::matrix(m, n, complex))
+            : array_base(traits_type::matrix(m, n, complex), claim)
         {
         }
 
         array ( const ::mxArray * backend, const clone_t& )
-            : array_base(::mxDuplicateArray(traits_type::check(backend)))
+            : array_base(traits_type::check(backend), clone)
         {
         }
 
         array ( ::mxArray * backend, const claim_t& )
-            : array_base(traits_type::check(backend))
+            : array_base(traits_type::check(backend), claim)
         {
         }
 
