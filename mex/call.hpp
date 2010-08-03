@@ -13,15 +13,20 @@
 
 namespace mex {
 
-    inline void call ( const char * function )
-    {
-        ::mexCallMATLAB(0, 0, 0, 0, function);
-    }
+    void call ( const char * function );
 
-    inline void call ( const std::string& function )
-    {
-        ::mexCallMATLAB(0, 0, 0, 0, function.c_str());
-    }
+    void call ( const std::string& function );
+
+    void call ( const array<char_t>& function );
+
+    void call ( int nlhs, ::mxArray * plhs,
+        int nrhs, const ::mxArray * prhs, const char * function );
+
+    void call ( int nlhs, ::mxArray * plhs,
+        int nrhs, const ::mxArray * prhs, const std::string& function );
+
+    void call ( int nlhs, ::mxArray * plhs[],
+        int nrhs, ::mxArray * prhs[], const array<char_t>& function );
 
 }
 
