@@ -46,4 +46,22 @@ namespace mex {
         }
     }
 
+    void Archive::put ( const std::string& name, const array_base& variable )
+    {
+        const int result = ::matPutVariable
+            (myBackend, name.c_str(), variable.backend());
+        if ( result != 0 ) {
+            throw (std::exception());
+        }
+    }
+
+    array_base Archive::get ( const std::string& name ) const
+    {
+        ::mxArray *const result = ::matGetVariable(myBackend, name.c_str());
+        if ( result != 0 ) {
+            throw (std::exception());
+        }
+        return (array_base(result, claim));
+    }
+
 }

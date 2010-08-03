@@ -36,6 +36,11 @@ namespace mex {
     public:
         ~Archive ();
 
+        /* methods. */
+    public:
+        void put ( const std::string& name, const array_base& variable );
+        array_base get ( const std::string& name ) const;
+
         /* operators. */
     private:
         Archive& operator= ( const Archive& );
