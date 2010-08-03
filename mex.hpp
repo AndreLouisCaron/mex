@@ -26,7 +26,7 @@
 #include "mex/permute.hpp"
 
 namespace mex {
-    
+
     array<char_t> exception_id ( const ::mxArray * exception )
     {
         ::mxArray *const result =
@@ -36,7 +36,7 @@ namespace mex {
         }
         return (array<char_t>(result, claim));
     }
-    
+
     array<char_t> exception_message ( const ::mxArray * exception )
     {
         ::mxArray *const result =
