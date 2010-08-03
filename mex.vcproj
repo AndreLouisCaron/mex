@@ -310,7 +310,23 @@
 				>
 			</File>
 			<File
+				RelativePath=".\mex\exist.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\mex\flipdim.hpp"
+				>
+			</File>
+			<File
 				RelativePath=".\mex.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\mex\mkdir.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\mex\permute.hpp"
 				>
 			</File>
 			<File
