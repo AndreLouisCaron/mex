@@ -18,6 +18,7 @@
 #include "mex/string.hpp"
 #include "mex/types.hpp"
 #include "mex/Session.hpp"
+#include "mex/Archive.hpp"
 
     // functions.
 #include "mex/exist.hpp"

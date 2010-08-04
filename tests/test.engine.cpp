@@ -12,10 +12,22 @@
 int main ( int, char ** )
 try
 {
+        // Connect to open MATLAB session, or initiate one.
     std::cerr
         << "Starting MATLAB..." << std::flush;
     const mex::Session _;
     std::cerr << "  [OK!]" << std::endl;
+    
+        // Load requested archive.
+    std::cerr
+        << "Loading archive..." << std::flush;
+    const mex::Archive archive("archive.mat", mex::read);
+    std::cerr << "  [OK!]" << std::endl;
+    
+        // List archive contents.
+    const std::vector<std::string> variables = archive.variables();
+    std::copy(variables.begin(), variables.end(),
+        std::ostream_iterator<std::string>(std::cout, "\n"));
 }
 catch ( const std::exception& error )
 {
