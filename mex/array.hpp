@@ -110,7 +110,7 @@ namespace mex {
         }
 
         array ( const array<T>& other )
-            : array_base(::mxDuplicateArray(other.backend()))
+            : array_base(::mxDuplicateArray(other.backend()), claim)
         {
         }
 
