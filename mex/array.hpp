@@ -157,6 +157,7 @@ namespace mex {
         {
             array<T> copy(other); copy.swap(*this); return (*this);
         }
+
         value_type& operator() ( size_type i )
         {
             return (data()[offset(i)]);
