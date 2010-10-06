@@ -6,6 +6,8 @@
 // online at "http://www.opensource.org/licenses/artistic-license-2.0.php".
 
 #include "call.hpp"
+#include "exception.hpp"
+#include "error.hpp"
 
 namespace mex {
 
@@ -13,10 +15,16 @@ namespace mex {
     {
         const ::mxArray * result =
             ::mexCallMATLABWithTrap(0, 0, 0, 0, function);
-        if ( result != 0 ) {
-            throw (std::exception(function));
+        if ( result != 0 )
+        {
+            const std::string identifier =
+                string(exception_id(result));
+            const std::string description =
+                string(exception_message(result));
+            const std::string message =
+                identifier + ": " + description;
+            throw (std::exception(message.c_str()));
         }
-        ::mexCallMATLAB(0, 0, 0, 0, function);
     }
 
     void call ( const std::string& function )
@@ -33,9 +41,16 @@ namespace mex {
         int nrhs, ::mxArray * prhs[], const char * function )
     {
         const ::mxArray * result =
-            ::mexCallMATLABWithTrap(nlhs, plhs, nrhs, prhs, "permute");
-        if ( result != 0 ) {
-            throw (std::exception(function));
+            ::mexCallMATLABWithTrap(nlhs, plhs, nrhs, prhs, function);
+        if ( result != 0 )
+        {
+            const std::string identifier =
+                string(exception_id(result));
+            const std::string description =
+                string(exception_message(result));
+            const std::string message =
+                identifier + ": " + description;
+            throw (std::exception(message.c_str()));
         }
     }
 
