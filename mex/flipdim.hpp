@@ -22,9 +22,9 @@ namespace mex {
             0
         }; const int nlhs = 1;
         
-        call(nlhs, plhs, nrhs, plhs, "flipdim");
+        call(nlhs, plhs, nrhs, prhs, "flipdim");
         
-        return (mex::array<T>(plhs[0], owner));
+        return (mex::array<T>(plhs[0], claim));
     }
 
 }

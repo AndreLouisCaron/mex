@@ -22,9 +22,9 @@ namespace mex {
             0
         }; const int nlhs = 1;
         
-        call(nlhs, plhs, nrhs, plhs, "permute");
+        call(nlhs, plhs, nrhs, prhs, "permute");
         
-        return (mex::array<T>(plhs[0], owner));
+        return (mex::array<T>(plhs[0], claim));
     }
 
 }
