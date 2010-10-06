@@ -25,6 +25,10 @@
 #include "mex/flipdim.hpp"
 #include "mex/mkdir.hpp"
 #include "mex/permute.hpp"
+#include "mex/imread.hpp"
+#include "mex/cast.hpp"
+#include "mex/rgb2gray.hpp"
+#include "mex/im2double.hpp"
 
 namespace mex {
 
