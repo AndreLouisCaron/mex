@@ -23,12 +23,11 @@ namespace mex {
         ::mexErrMsgTxt(message.c_str());
     }
 
-    
     inline void error ( const array<char_t>& message )
     {
         error(string(message));
     }
-    
+
     inline void warning ( const char * message )
     {
         ::mexWarnMsgTxt(message);
@@ -39,6 +38,10 @@ namespace mex {
         ::mexWarnMsgTxt(message.c_str());
     }
 
+    inline void warning ( const array<char_t>& message )
+    {
+        warning(string(message));
+    }
 }
 
 #endif /* _mex_error_hpp__ */
