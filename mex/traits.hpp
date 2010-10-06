@@ -130,7 +130,7 @@ namespace mex {
     };
 
     template<> struct traits< logical > :
-        public common_traits< double, mxLOGICAL_CLASS >
+        public common_traits< bool, mxLOGICAL_CLASS >
     {
         static ::mxArray * create ( size_t m, size_t n )
         {
@@ -140,6 +140,11 @@ namespace mex {
             }
             return (result);
         }
+    };
+
+    template<> struct traits< float > :
+        public numeric_traits< float, mxSINGLE_CLASS >
+    {
     };
 
     template<> struct traits< function > :
