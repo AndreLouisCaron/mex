@@ -28,24 +28,14 @@
 
 namespace mex {
 
-    array<char_t> exception_id ( const ::mxArray * exception )
+    template<typename T>
+    T scalar ( const ::mxArray * value )
     {
-        ::mxArray *const result =
-            ::mxGetProperty(exception, 0, "identifier");
-        if ( result == 0 ) {
-            return (string("MATLAB:no-identifier"));
+        const array<T> A(value, clone);
+        if ( A.numel() != 1 ) {
+            throw (std::exception("Not a scalar value."));
         }
-        return (array<char_t>(result, claim));
-    }
-
-    array<char_t> exception_message ( const ::mxArray * exception )
-    {
-        ::mxArray *const result =
-            ::mxGetProperty(exception, 0, "message");
-        if ( result == 0 ) {
-            return (string("MATLAB:no-identifier"));
-        }
-        return (array<char_t>(result, claim));
+        return (A(0));
     }
 
 }

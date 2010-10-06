@@ -15,6 +15,26 @@
 
 namespace mex {
 
+    inline array<char_t> exception_id ( const ::mxArray * exception )
+    {
+        ::mxArray *const result =
+            ::mxGetProperty(exception, 0, "identifier");
+        if ( result == 0 ) {
+            return (string("MATLAB:no-identifier"));
+        }
+        return (array<char_t>(result, claim));
+    }
+
+    inline array<char_t> exception_message ( const ::mxArray * exception )
+    {
+        ::mxArray *const result =
+            ::mxGetProperty(exception, 0, "message");
+        if ( result == 0 ) {
+            return (string("MATLAB:no-identifier"));
+        }
+        return (array<char_t>(result, claim));
+    }
+
     class exception :
         public std::exception
     {
