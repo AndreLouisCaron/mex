@@ -26,7 +26,7 @@ namespace mex {
         ::MATFile * myBackend;
 
         /* class methods. */
-    public:
+    private:
         static ::MATFile * open ( const char * path, const char * mode )
         {
             ::MATFile *const result = ::matOpen(path, mode);
