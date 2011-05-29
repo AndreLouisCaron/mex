@@ -23,28 +23,107 @@ namespace mex {
     private:
         ::Engine * myBackend;
 
+        /* class methods. */
+    private:
+        ::Engine * shared ( const char * command )
+        {
+            ::Engine *const session = ::engOpen(command);
+            if ( session == 0 ) {
+                throw (std::runtime_error("Could not start MATLAB session."));
+            }
+            return (session);
+        }
+
+        ::Engine * exclusive ( const char * command )
+        {
+            int reason = 0;
+            ::Engine *const session = ::engOpenSingleUse(command, 0, &reason);
+            if ( session == 0 ) {
+                throw (std::runtime_error("Could not start MATLAB session."));
+            }
+            return (session);
+        }
+
         /* construction. */
     public:
-        Session ();
-        Session ( const exclusive_t& );
-        Session ( const std::string& command );
-        Session ( const std::string& command, const exclusive_t& );
+        Session ()
+            : myBackend( shared(0) )
+        {
+        }
+
+        Session ( const exclusive_t& )
+            : myBackend( exclusive(0) )
+        {
+        }
+
+        Session ( const std::string& command )
+            : myBackend( shared(command.c_str()) )
+        {
+        }
+
+        Session ( const std::string& command, const exclusive_t& )
+            : myBackend( exclusive(command.c_str()) )
+        {
+        }
 
     private:
         Session ( const Session& );
 
     public:
-        ~Session ();
+        ~Session ()
+        {
+            const int result = ::engClose(myBackend);
+            if ( result != 0 )
+            {
+                // ...can't throw!!!
+            }
+        }
 
         /* methods. */
     public:
-        bool visible () const;
-        void visible ( bool visible );
+        bool visible () const
+        {
+            bool visible = false;
+            const int result = ::engGetVisible(myBackend, &visible);
+            if ( result != 0 ) {
+                throw (std::exception());
+            }
+            return (visible);
+        }
 
-        void put ( const std::string& name, const array_base& variable );
-        array_base get ( const std::string& name ) const;
+        void visible ( bool visible )
+        {
+            const int result = ::engSetVisible(myBackend, visible);
+            if ( result != 0 ) {
+                throw (std::exception());
+            }
+        }
 
-        void eval ( const std::string& expression );
+        void put ( const std::string& name, const array_base& variable )
+        {
+            const int result = ::engPutVariable
+                (myBackend, name.c_str(), variable.backend());
+            if ( result != 0 ) {
+                throw (std::exception());
+            }
+        }
+
+        array_base get ( const std::string& name ) const
+        {
+            ::mxArray *const result = ::engGetVariable(myBackend, name.c_str());
+            if ( result != 0 ) {
+                throw (std::exception());
+            }
+            return (array_base(result, claim));
+        }
+
+        void eval ( const std::string& expression )
+        {
+            const int result = ::engEvalString(myBackend, expression.c_str());
+            if ( result != 0 ) {
+                throw (std::exception());
+            }
+        }
 
         /* operators. */
     private:

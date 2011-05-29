@@ -9,7 +9,8 @@
 // online at "http://www.opensource.org/licenses/artistic-license-2.0.php".
 
 #include "__configure__.hpp"
-#include <string>
+#include "array.hpp"
+#include "string.hpp"
 
 namespace mex {
 

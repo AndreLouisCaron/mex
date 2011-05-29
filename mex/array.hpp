@@ -31,10 +31,25 @@ namespace mex {
 
         /* construction. */
     public:
-        array_base ( ::mxArray * backend, const claim_t& );
-        array_base ( const ::mxArray * backend, const clone_t& );
-        array_base ( const array_base& other );
-        ~array_base ();
+        array_base ( ::mxArray * backend, const claim_t& )
+            : myBackend(backend)
+        {
+        }
+
+        array_base ( const ::mxArray * backend, const clone_t& )
+        : myBackend(::mxDuplicateArray(backend))
+        {
+        }
+
+        array_base ( const array_base& other )
+            : myBackend(::mxDuplicateArray(other.backend()))
+        {
+        }
+
+        ~array_base ()
+        {
+            ::mxDestroyArray(myBackend);
+        }
 
         /* methods. */
     protected:
@@ -44,24 +59,88 @@ namespace mex {
         }
 
     public:
-        ::mxArray * backend () const;
-        ::mxArray * release ();
-        bool empty () const;
-        size_type dims () const;
-        size_type dim ( size_type i ) const;
-        size_type numel () const;
-        size_type elsiz () const;
-        size_type M () const;
-        size_type N () const;
-        bool is ( const char * klass ) const;
+        ::mxArray * backend () const
+        {
+            return (myBackend);
+        }
 
-        pointer data ();
-        const_pointer data () const;
+        ::mxArray * release ()
+        {
+            ::mxArray * backend = myBackend; myBackend = 0; return (backend);
+        }
 
-        size_type offset ( int nsubs, ::mwIndex * subs ) const;
-        size_type offset ( size_type i ) const;
-        size_type offset ( size_type i, size_type j ) const;
-        size_type offset ( size_type i, size_type j, size_type k ) const;
+        bool empty () const
+        {
+            return (::mxIsEmpty(myBackend));
+        }
+
+        size_type dims () const
+        {
+            return (::mxGetNumberOfDimensions(myBackend));
+        }
+
+        size_type dim ( size_type i ) const
+        {
+            return (::mxGetDimensions(myBackend)[i]);
+        }
+
+        size_type numel () const
+        {
+            return (::mxGetNumberOfElements(myBackend));
+        }
+
+        size_type elsiz () const
+        {
+            return (::mxGetElementSize(myBackend));
+        }
+
+        size_type M () const
+        {
+            return (::mxGetM(myBackend));
+        }
+
+        size_type N () const
+        {
+            return (::mxGetN(myBackend));
+        }
+
+        bool is ( const char * klass ) const
+        {
+            return (::mxIsClass(myBackend, klass));
+        }
+
+        pointer data ()
+        {
+            return (::mxGetData(myBackend));
+        }
+
+        const_pointer data () const
+        {
+            return (::mxGetData(myBackend));
+        }
+
+        size_type offset ( int nsubs, ::mwIndex * subs ) const
+        {
+            return (::mxCalcSingleSubscript(myBackend, nsubs, subs));
+        }
+
+        size_type offset ( size_type i ) const
+        {
+            ::mwIndex subs[] = { i };
+            return (offset(1, subs));
+        }
+
+        size_type offset ( size_type i, size_type j ) const
+        {
+            ::mwIndex subs[] = { i, j };
+            return (offset(2, subs));
+        }
+
+        size_type offset ( size_type i, size_type j, size_type k ) const
+        {
+            ::mwIndex subs[] = { i, j, k };
+            return (offset(3, subs));
+        }
 
         /* operators. */
     private:

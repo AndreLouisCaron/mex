@@ -10,8 +10,8 @@
 
 #include "__configure__.hpp"
 #include "array.hpp"
-#include <string>
 #include <exception>
+#include <string>
 
 namespace mex {
 
