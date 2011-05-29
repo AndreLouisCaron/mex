@@ -1,5 +1,5 @@
-#ifndef _mex_Archive_hpp__
-#define _mex_Archive_hpp__
+#ifndef _mex_archive_hpp__
+#define _mex_archive_hpp__
 
 // Copyright(c) Andre Caron, 2009-2010
 //
@@ -19,7 +19,7 @@ namespace mex {
     static class edit_t {} edit;
     static class write_t {} write;
 
-    class Archive
+    class archive
     {
         /* data. */
     private:
@@ -38,26 +38,26 @@ namespace mex {
 
         /* construction. */
     public:
-        Archive ( const std::string& path, const read_t& )
+        archive ( const std::string& path, const read_t& )
             : myBackend( open(path.c_str(), "r") )
         {
         }
 
-        Archive ( const std::string& path, const edit_t& )
+        archive ( const std::string& path, const edit_t& )
         : myBackend( open(path.c_str(), "u") )
         {
         }
 
-        Archive ( const std::string& path, const write_t& )
+        archive ( const std::string& path, const write_t& )
             : myBackend( open(path.c_str(), "w") )
         {
         }
 
     private:
-        Archive ( const Archive& );
+        archive ( const archive& );
 
     public:
-        ~Archive ()
+        ~archive ()
         {
             const int result = ::matClose(myBackend);
             if ( result != 0 )
@@ -108,9 +108,9 @@ namespace mex {
 
         /* operators. */
     private:
-        Archive& operator= ( const Archive& );
+        archive& operator= ( const archive& );
     };
 
 }
 
-#endif /* _mex_Archive_hpp__ */
+#endif /* _mex_archive_hpp__ */

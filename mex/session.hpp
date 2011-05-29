@@ -1,5 +1,5 @@
-#ifndef _mex_Session_hpp__
-#define _mex_Session_hpp__
+#ifndef _mex_session_hpp__
+#define _mex_session_hpp__
 
 // Copyright(c) Andre Caron, 2009-2010
 //
@@ -17,7 +17,7 @@ namespace mex {
 
     static struct exclusive_t {} exclusive;
 
-    class Session
+    class session
     {
         /* data. */
     private:
@@ -46,31 +46,31 @@ namespace mex {
 
         /* construction. */
     public:
-        Session ()
+        session ()
             : myBackend( shared(0) )
         {
         }
 
-        Session ( const exclusive_t& )
+        session ( const exclusive_t& )
             : myBackend( exclusive(0) )
         {
         }
 
-        Session ( const std::string& command )
+        session ( const std::string& command )
             : myBackend( shared(command.c_str()) )
         {
         }
 
-        Session ( const std::string& command, const exclusive_t& )
+        session ( const std::string& command, const exclusive_t& )
             : myBackend( exclusive(command.c_str()) )
         {
         }
 
     private:
-        Session ( const Session& );
+        session ( const session& );
 
     public:
-        ~Session ()
+        ~session ()
         {
             const int result = ::engClose(myBackend);
             if ( result != 0 )
@@ -127,9 +127,9 @@ namespace mex {
 
         /* operators. */
     private:
-        Session& operator= ( const Session& );
+        session& operator= ( const session& );
     };
 
 }
 
-#endif /* _mex_Session_hpp__ */
+#endif /* _mex_session_hpp__ */

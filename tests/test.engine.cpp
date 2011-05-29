@@ -15,13 +15,13 @@ try
         // Connect to open MATLAB session, or initiate one.
     std::cerr
         << "Starting MATLAB..." << std::flush;
-    const mex::Session _;
+    const mex::session _;
     std::cerr << "  [OK!]" << std::endl;
     
         // Load requested archive.
     std::cerr
         << "Loading archive..." << std::flush;
-    const mex::Archive archive("archive.mat", mex::read);
+    const mex::archive archive("archive.mat", mex::read);
     std::cerr << "  [OK!]" << std::endl;
     
         // List archive contents.
