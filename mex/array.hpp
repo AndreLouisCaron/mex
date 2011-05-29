@@ -42,7 +42,7 @@ namespace mex {
         }
 
         array_base ( const ::mxArray * backend, const clone_t& )
-        : myBackend(::mxDuplicateArray(backend))
+	    : myBackend(::mxDuplicateArray(backend))
         {
         }
 
@@ -272,6 +272,12 @@ namespace mex {
             return (data()[offset(i,j,k)]);
         }
     };
+
+    template<typename T>
+    void swap ( array<T>& lhs, array<T>& rhs )
+    {
+	lhs.swap(rhs);
+    }
 
 }
 
