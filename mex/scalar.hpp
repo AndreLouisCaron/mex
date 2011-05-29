@@ -18,6 +18,16 @@ namespace mex {
         array<T> result(1, 1); result(0) = value; return(result);
     }
 
+    template<typename T>
+    T scalar ( const ::mxArray * value )
+    {
+        if ( numel(traits<T>::check(value)) == 1 ) {
+            return *static_cast<const T*>(::mxGetData(value));
+        }
+        throw (std::exception("Not a scalar value."));
+    }
+
+
 }
 
 #endif /* _mex_scalar_hpp__ */

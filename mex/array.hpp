@@ -17,6 +17,11 @@
 
 namespace mex {
 
+    inline size_t numel ( const ::mxArray * backend )
+    {
+        return (::mxGetNumberOfElements(backend));
+    }
+
     class array_base
     {
         /* nested types. */
