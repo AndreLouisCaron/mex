@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="9.00"
+	Version="9,00"
 	Name="mex"
 	ProjectGUID="{79D78982-4728-441D-BCC3-5EF06C836B91}"
 	RootNamespace="mex"
@@ -78,11 +78,12 @@
 			/>
 		</Configuration>
 		<Configuration
-			Name="Debug|x64"
+			Name="Release|Win32"
 			OutputDirectory="$(SolutionDir).build\$(PlatformName)\$(ConfigurationName)"
 			IntermediateDirectory="$(SolutionDir).build\$(PlatformName)\$(ConfigurationName)\$(ProjectName)"
 			ConfigurationType="4"
 			CharacterSet="2"
+			WholeProgramOptimization="1"
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
@@ -98,14 +99,13 @@
 			/>
 			<Tool
 				Name="VCMIDLTool"
-				TargetEnvironment="3"
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				Optimization="0"
-				MinimalRebuild="true"
-				BasicRuntimeChecks="3"
-				RuntimeLibrary="3"
+				Optimization="2"
+				EnableIntrinsicFunctions="true"
+				RuntimeLibrary="2"
+				EnableFunctionLevelLinking="true"
 				WarningLevel="3"
 				DebugInformationFormat="3"
 			/>
@@ -138,12 +138,11 @@
 			/>
 		</Configuration>
 		<Configuration
-			Name="Release|Win32"
+			Name="Debug|x64"
 			OutputDirectory="$(SolutionDir).build\$(PlatformName)\$(ConfigurationName)"
 			IntermediateDirectory="$(SolutionDir).build\$(PlatformName)\$(ConfigurationName)\$(ProjectName)"
 			ConfigurationType="4"
 			CharacterSet="2"
-			WholeProgramOptimization="1"
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
@@ -159,13 +158,14 @@
 			/>
 			<Tool
 				Name="VCMIDLTool"
+				TargetEnvironment="3"
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				Optimization="2"
-				EnableIntrinsicFunctions="true"
-				RuntimeLibrary="2"
-				EnableFunctionLevelLinking="true"
+				Optimization="0"
+				MinimalRebuild="true"
+				BasicRuntimeChecks="3"
+				RuntimeLibrary="3"
 				WarningLevel="3"
 				DebugInformationFormat="3"
 			/>
@@ -262,126 +262,102 @@
 	<References>
 	</References>
 	<Files>
-		<Filter
-			Name="sources"
-			Filter="cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx"
-			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
+		<File
+			RelativePath=".\mex\__configure__.hpp"
 			>
-			<File
-				RelativePath=".\mex\Archive.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\mex\array.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\mex\call.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\mex\Session.cpp"
-				>
-			</File>
-		</Filter>
-		<Filter
-			Name="headers"
-			Filter="h;hpp;hxx;hm;inl;inc;xsd"
-			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
+		</File>
+		<File
+			RelativePath=".\mex\__module__.hpp"
 			>
-			<File
-				RelativePath=".\mex\__configure__.hpp"
-				>
-			</File>
-			<File
-				RelativePath=".\mex\allocator.hpp"
-				>
-			</File>
-			<File
-				RelativePath=".\mex\Archive.hpp"
-				>
-			</File>
-			<File
-				RelativePath=".\mex\array.hpp"
-				>
-			</File>
-			<File
-				RelativePath=".\mex\call.hpp"
-				>
-			</File>
-			<File
-				RelativePath=".\mex\cast.hpp"
-				>
-			</File>
-			<File
-				RelativePath=".\mex\error.hpp"
-				>
-			</File>
-			<File
-				RelativePath=".\mex\exception.hpp"
-				>
-			</File>
-			<File
-				RelativePath=".\mex\exist.hpp"
-				>
-			</File>
-			<File
-				RelativePath=".\mex\flipdim.hpp"
-				>
-			</File>
-			<File
-				RelativePath=".\mex\im2double.hpp"
-				>
-			</File>
-			<File
-				RelativePath=".\mex\imread.hpp"
-				>
-			</File>
-			<File
-				RelativePath=".\mex\isa.hpp"
-				>
-			</File>
-			<File
-				RelativePath=".\mex.hpp"
-				>
-			</File>
-			<File
-				RelativePath=".\mex\mkdir.hpp"
-				>
-			</File>
-			<File
-				RelativePath=".\mex\permute.hpp"
-				>
-			</File>
-			<File
-				RelativePath=".\mex\reference.hpp"
-				>
-			</File>
-			<File
-				RelativePath=".\mex\rgb2gray.hpp"
-				>
-			</File>
-			<File
-				RelativePath=".\mex\scalar.hpp"
-				>
-			</File>
-			<File
-				RelativePath=".\mex\Session.hpp"
-				>
-			</File>
-			<File
-				RelativePath=".\mex\string.hpp"
-				>
-			</File>
-			<File
-				RelativePath=".\mex\traits.hpp"
-				>
-			</File>
-			<File
-				RelativePath=".\mex\types.hpp"
-				>
-			</File>
-		</Filter>
+		</File>
+		<File
+			RelativePath=".\mex\allocator.hpp"
+			>
+		</File>
+		<File
+			RelativePath=".\mex\archive.hpp"
+			>
+		</File>
+		<File
+			RelativePath=".\mex\array.hpp"
+			>
+		</File>
+		<File
+			RelativePath=".\mex\call.hpp"
+			>
+		</File>
+		<File
+			RelativePath=".\mex\cast.hpp"
+			>
+		</File>
+		<File
+			RelativePath=".\mex\error.hpp"
+			>
+		</File>
+		<File
+			RelativePath=".\mex\exception.hpp"
+			>
+		</File>
+		<File
+			RelativePath=".\mex\exist.hpp"
+			>
+		</File>
+		<File
+			RelativePath=".\mex\flipdim.hpp"
+			>
+		</File>
+		<File
+			RelativePath=".\mex\im2double.hpp"
+			>
+		</File>
+		<File
+			RelativePath=".\mex\imread.hpp"
+			>
+		</File>
+		<File
+			RelativePath=".\mex\isa.hpp"
+			>
+		</File>
+		<File
+			RelativePath=".\mex.hpp"
+			>
+		</File>
+		<File
+			RelativePath=".\mex\mkdir.hpp"
+			>
+		</File>
+		<File
+			RelativePath=".\mex\permute.hpp"
+			>
+		</File>
+		<File
+			RelativePath=".\mex\reference.hpp"
+			>
+		</File>
+		<File
+			RelativePath=".\mex\rgb2gray.hpp"
+			>
+		</File>
+		<File
+			RelativePath=".\mex\scalar.hpp"
+			>
+		</File>
+		<File
+			RelativePath=".\mex\session.hpp"
+			>
+		</File>
+		<File
+			RelativePath=".\mex\string.hpp"
+			>
+		</File>
+		<File
+			RelativePath=".\mex\traits.hpp"
+			>
+		</File>
+		<File
+			RelativePath=".\mex\types.hpp"
+			>
+		</File>
 	</Files>
 	<Globals>
 	</Globals>
