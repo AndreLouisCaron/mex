@@ -9,10 +9,24 @@
 // online at "http://www.opensource.org/licenses/artistic-license-2.0.php".
 
 #include "__configure__.hpp"
+#include "string.hpp"
 
 namespace mex {
 
-    using ::mexPrintf;
+    inline void print ( const char * message )
+    {
+	::mexPrintf(message);
+    }
+
+    inline void print ( const std::string& message )
+    {
+	print(message.c_str());
+    }
+
+    inline void print ( const array<char_t>& message )
+    {
+	print(string(message));
+    }
 
 }
 
