@@ -13,6 +13,7 @@
 #include "cast.hpp"
 #include "error.hpp"
 #include "exception.hpp"
+#include "print.hpp"
 #include "session.hpp"
 #include "string.hpp"
 #include "scalar.hpp"
